@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musket Cove Island Resort and Marina</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ocean: '#0077B6',
+                        turquoise: '#00B4D8',
+                        sand: '#F4E1C1',
+                        palm: '#2A9D8F',
+                        lightGrey: '#F5F5F5'
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Open Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --ocean: #0077B6;
+            --turquoise: #00B4D8;
+            --sand: #F4E1C1;
+            --palm: #2A9D8F;
+            --white: #FFFFFF;
+            --light-grey: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+            padding: 1rem 0;
+        }
+
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 119, 182, 0.15);
+            padding: 0.5rem 0;
+        }
+
+        .nav-link {
+            position: relative;
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-scrolled .nav-link {
+            color: #0077B6;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00B4D8, #2A9D8F);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(0, 119, 182, 0.4) 0%, rgba(42, 157, 143, 0.3) 100%),
+                        url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        /* Primary Button */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #0077B6 0%, #00B4D8 100%);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 119, 182, 0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 119, 182, 0.45);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: #0077B6;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid #0077B6;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #0077B6;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: #0077B6;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #00B4D8, #2A9D8F);
+            border-radius: 2px;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 119, 182, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 119, 182, 0.2);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Room Cards */
+        .room-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            height: 450px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .room-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .room-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .room-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+        }
+
+        /* Activity Cards */
+        .activity-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 300px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .activity-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .activity-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .activity-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 119, 182, 0.9), transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            color: white;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 119, 182, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 119, 182, 0.1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 6rem;
+            font-family: Georgia, serif;
+            color: #00B4D8;
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.5s ease;
+        }
+
+        .page-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Background Variations */
+        .bg-about {
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.1) 0%, rgba(244, 225, 193, 0.2) 100%);
+        }
+
+        .bg-services {
+            background: linear-gradient(180deg, #F5F5F5 0%, white 100%);
+        }
+
+        .bg-location {
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.05) 0%, rgba(0, 119, 182, 0.1) 100%);
+        }
+
+        /* Floating Elements */
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stats Counter */
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #0077B6;
+            line-height: 1;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 119, 182, 0.98);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .mobile-menu.open {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: white;
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-scrolled .hamburger span {
+            background: #0077B6;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: rotate(90deg);
+        }
+
+        /* Particles */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(0, 180, 216, 0.3);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Form Styles */
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #E5E5E5;
+            border-radius: 12px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00B4D8;
+            box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.1);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Prefers Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Quick Book Widget */
+        .quick-book {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 20px 60px rgba(0, 119, 182, 0.2);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 20;
+        }
+
+        @media (max-width: 768px) {
+            .quick-book {
+                position: relative;
+                bottom: 0;
+                transform: none;
+                margin-top: -80px;
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3" onclick="showPage('home')">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2" class="text-white nav-scrolled-text"/>
+                    <path d="M12 25 L20 12 L28 25 Z" fill="currentColor" class="text-turquoise"/>
+                    <path d="M15 22 Q20 18 25 22" stroke="currentColor" stroke-width="2" fill="none" class="text-ocean"/>
+                </svg>
+                <span class="font-heading font-bold text-xl text-white nav-scrolled-text">Musket Cove</span>
+            </a>
+            
+            <div class="desktop-nav flex items-center gap-8">
+                <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
+                <a href="#" class="nav-link" onclick="showPage('about')">About Us</a>
+                <a href="#" class="nav-link" onclick="showPage('services')">Services</a>
+                <a href="#" class="nav-link" onclick="showPage('location')">Location</a>
+                <a href="#" class="nav-link" onclick="showPage('gallery')">Gallery</a>
+                <a href="#" class="nav-link" onclick="showPage('contact')">Contact</a>
+                <button class="btn-primary text-sm" onclick="showPage('contact')">Book Now</button>
+            </div>
+
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="absolute top-6 right-6 text-white text-3xl" onclick="toggleMobileMenu()">&times;</button>
+        <a href="#" onclick="showPage('home'); toggleMobileMenu();">Home</a>
+        <a href="#" onclick="showPage('about'); toggleMobileMenu();">About Us</a>
+        <a href="#" onclick="showPage('services'); toggleMobileMenu();">Services</a>
+        <a href="#" onclick="showPage('location'); toggleMobileMenu();">Location</a>
+        <a href="#" onclick="showPage('gallery'); toggleMobileMenu();">Gallery</a>
+        <a href="#" onclick="showPage('contact'); toggleMobileMenu();">Contact</a>
+        <button class="btn-primary mt-4" onclick="showPage('contact'); toggleMobileMenu();">Book Now</button>
+    </div>
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page-section active">
+        <!-- Hero Section -->
+        <div class="hero-section" id="heroSection">
+            <div class="particles" id="particles"></div>
+            <div class="hero-content">
+                <p class="text-turquoise font-heading font-semibold tracking-widest mb-4" style="animation: fadeInUp 1s ease-out;">WELCOME TO PARADISE</p>
+                <h1 class="hero-title">Musket Cove Island<br>Resort and Marina</h1>
+                <p class="hero-subtitle">Experience the ultimate tropical escape in the heart of the Fiji Islands</p>
+                <div class="flex flex-wrap gap-4 justify-center mt-8" style="animation: fadeInUp 1s ease-out 0.4s both;">
+                    <button class="btn-primary" onclick="showPage('contact')">
+                        Reserve Your Stay
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </button>
+                    <button class="btn-secondary bg-white/10 border-white text-white hover:bg-white hover:text-ocean" onclick="showPage('about')">
+                        Discover More
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <svg class="w-8 h-8 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Quick Book Widget -->
+        <div class="max-w-6xl mx-auto px-4 relative">
+            <div class="quick-book">
+                <div class="flex flex-col">
+                    <label class="text-sm font-semibold text-gray-600 mb-1">Check In</label>
+                    <input type="date" class="form-input w-40">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-sm font-semibold text-gray-600 mb-1">Check Out</label>
+                    <input type="date" class="form-input w-40">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-sm font-semibold text-gray-600 mb-1">Guests</label>
+                    <select class="form-input w-32">
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4+ Guests</option>
+                    </select>
+                </div>
+                <div class="flex items-end">
+                    <button class="btn-primary h-12">Check Availability</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Preview Section -->
+        <section class="section pt-32 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">OUR STORY</p>
+                        <h2 class="section-title text-left">A Paradise Like No Other</h2>
+                        <p class="text-gray-600 mt-8 text-lg leading-relaxed mb-6">
+                            Nestled in the pristine waters of the Mamanuca Islands, Musket Cove Island Resort and Marina offers an unforgettable escape from the ordinary. For over three decades, we've been creating cherished memories for travelers seeking the perfect blend of adventure and relaxation.
+                        </p>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-8">
+                            Our resort combines traditional Fijian hospitality with world-class amenities, creating an atmosphere of warmth and luxury that keeps our guests returning year after year.
+                        </p>
+                        <button class="btn-secondary" onclick="showPage('about')">
+                            Learn More About Us
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="fade-in relative">
+                        <img src="https://image-tc.galaxy.tf/wijpeg-4xo9v5ajbodqqeybj77kvads5/map-shot-zoomed-out-copy.jpg?width=1920" alt="Resort Overview" class="rounded-3xl shadow-2xl w-full h-[500px] object-cover">
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-ocean to-turquoise rounded-full flex items-center justify-center">
+                                    <span class="text-white font-heading font-bold text-xl">30+</span>
+                                </div>
+                                <div>
+                                    <p class="font-heading font-bold text-gray-800">Years of Excellence</p>
+                                    <p class="text-gray-500">Creating memories</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-gradient-to-r from-ocean to-palm">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="stat-item fade-in">
+                        <p class="stat-number text-white counter" data-target="85">0</p>
+                        <p class="text-white/80 font-heading mt-2">Luxury Rooms</p>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <p class="stat-number text-white counter" data-target="30">0</p>
+                        <p class="text-white/80 font-heading mt-2">Years of Service</p>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <p class="stat-number text-white counter" data-target="50000">0</p>
+                        <p class="text-white/80 font-heading mt-2">Happy Guests</p>
+                    </div>
+                    <div class="stat-item fade-in">
+                        <p class="stat-number text-white counter" data-target="15">0</p>
+                        <p class="text-white/80 font-heading mt-2">Island Activities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rooms Section -->
+        <section class="section bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">ACCOMMODATIONS</p>
+                    <h2 class="section-title">Your Perfect Retreat</h2>
+                    <p class="text-gray-600 mt-8 text-lg max-w-2xl mx-auto">
+                        Choose from our range of beautifully appointed rooms and villas, each designed to maximize comfort and showcase stunning ocean views.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="room-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Garden View Room">
+                        <div class="room-overlay">
+                            <p class="text-turquoise font-semibold text-sm mb-1">FROM $250/NIGHT</p>
+                            <h3 class="font-heading font-bold text-2xl mb-2">Garden View Room</h3>
+                            <p class="text-white/80 text-sm mb-4">Serene garden setting with private balcony</p>
+                            <button class="btn-primary text-sm py-2 px-6" onclick="showPage('contact')">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="room-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80" alt="Ocean Front Villa">
+                        <div class="room-overlay">
+                            <p class="text-turquoise font-semibold text-sm mb-1">FROM $450/NIGHT</p>
+                            <h3 class="font-heading font-bold text-2xl mb-2">Ocean Front Villa</h3>
+                            <p class="text-white/80 text-sm mb-4">Direct beach access with panoramic views</p>
+                            <button class="btn-primary text-sm py-2 px-6" onclick="showPage('contact')">Book Now</button>
+                        </div>
+                    </div>
+                    <div class="room-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80" alt="Premium Suite">
+                        <div class="room-overlay">
+                            <p class="text-turquoise font-semibold text-sm mb-1">FROM $650/NIGHT</p>
+                            <h3 class="font-heading font-bold text-2xl mb-2">Premium Suite</h3>
+                            <p class="text-white/80 text-sm mb-4">Ultimate luxury with private plunge pool</p>
+                            <button class="btn-primary text-sm py-2 px-6" onclick="showPage('contact')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Preview -->
+        <section class="section bg-lightGrey">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">ACTIVITIES</p>
+                    <h2 class="section-title">Unforgettable Experiences</h2>
+                    <p class="text-gray-600 mt-8 text-lg max-w-2xl mx-auto">
+                        From thrilling water sports to serene spa treatments, discover activities that will make your stay truly memorable.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Snorkeling">
+                        <div class="activity-overlay">
+                            <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                            </svg>
+                            <h4 class="font-heading font-bold text-lg">Snorkeling</h4>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Diving">
+                        <div class="activity-overlay">
+                            <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                            </svg>
+                            <h4 class="font-heading font-bold text-lg">Scuba Diving</h4>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80" alt="Spa">
+                        <div class="activity-overlay">
+                            <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                            </svg>
+                            <h4 class="font-heading font-bold text-lg">Spa & Wellness</h4>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Island Tours">
+                        <div class="activity-overlay">
+                            <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/>
+                            </svg>
+                            <h4 class="font-heading font-bold text-lg">Island Tours</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12 fade-in">
+                    <button class="btn-primary" onclick="showPage('services')">
+                        View All Activities
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="section bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">TESTIMONIALS</p>
+                    <h2 class="section-title">What Our Guests Say</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="testimonial-card fade-in">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Sarah" class="w-14 h-14 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-heading font-bold">Sarah Mitchell</h4>
+                                <p class="text-gray-500 text-sm">Sydney, Australia</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            "Absolutely magical experience! The staff went above and beyond to make our honeymoon unforgettable. The overwater bungalow was a dream come true."
+                        </p>
+                        <div class="flex mt-4 text-yellow-400">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="James" class="w-14 h-14 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-heading font-bold">James Chen</h4>
+                                <p class="text-gray-500 text-sm">Singapore</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            "The diving experiences here are world-class. I've been to many resorts, but Musket Cove offers something truly special. The marina facilities are top-notch."
+                        </p>
+                        <div class="flex mt-4 text-yellow-400">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Emma" class="w-14 h-14 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-heading font-bold">Emma Thompson</h4>
+                                <p class="text-gray-500 text-sm">London, UK</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed">
+                            "We brought our entire family and everyone had a blast. Kids loved the activities, we loved the spa. Perfect destination for all generations!"
+                        </p>
+                        <div class="flex mt-4 text-yellow-400">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="relative py-32 overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1920&q=80" alt="Beach Sunset" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-ocean/90 to-palm/80"></div>
+            </div>
+            <div class="relative z-10 max-w-4xl mx-auto text-center px-4 fade-in">
+                <h2 class="font-heading font-bold text-4xl md:text-5xl text-white mb-6">Ready to Experience Paradise?</h2>
+                <p class="text-white/90 text-xl mb-10 max-w-2xl mx-auto">
+                    Book your dream vacation today and discover why guests return to Musket Cove year after year.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button class="btn-primary bg-white text-ocean hover:bg-sand" onclick="showPage('contact')">
+                        Book Your Stay
+                    </button>
+                    <button class="btn-secondary border-white text-white hover:bg-white hover:text-ocean" onclick="showPage('contact')">
+                        Contact Us
+                    </button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- ABOUT PAGE -->
+    <section id="about" class="page-section">
+        <!-- About Hero -->
+        <div class="relative min-h-[70vh] flex items-center justify-center" style="background: linear-gradient(135deg, rgba(42, 157, 143, 0.5) 0%, rgba(0, 119, 182, 0.4) 100%), url('https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1920&q=80') center/cover no-repeat;">
+            <div class="text-center text-white px-4">
+                <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">ABOUT US</p>
+                <h1 class="font-heading font-bold text-5xl md:text-6xl mb-6">Our Story</h1>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto">Discover the heart and soul of Musket Cove Island Resort</p>
+            </div>
+        </div>
+
+        <!-- Our History -->
+        <section class="section bg-about">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="fade-in">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Resort History" class="rounded-3xl shadow-2xl w-full h-[500px] object-cover">
+                    </div>
+                    <div class="fade-in">
+                        <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">SINCE 1994</p>
+                        <h2 class="section-title text-left">A Legacy of Hospitality</h2>
+                        <p class="text-gray-600 mt-8 text-lg leading-relaxed mb-6">
+                            Musket Cove Island Resort began as a vision to create a sanctuary where luxury meets nature. Founded in 1994, our resort has grown from a small island retreat to one of Fiji's most celebrated destinations.
+                        </p>
+                        <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                            Our commitment to sustainable tourism and authentic Fijian hospitality has earned us recognition from travelers worldwide. We take pride in preserving the natural beauty of our island while providing world-class amenities.
+                        </p>
+                        <p class="text-gray-600 text-lg leading-relaxed">
+                            Today, we continue to welcome guests from around the globe, sharing our piece of paradise with those seeking adventure, relaxation, and unforgettable memories.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values -->
+        <section class="section bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">OUR VALUES</p>
+                    <h2 class="section-title">What We Stand For</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="feature-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1518733057094-95b53143d2a7?w=600&q=80" alt="Sustainability">
+                        <div class="p-8">
+                            <div class="w-14 h-14 bg-gradient-to-br from-palm to-turquoise rounded-2xl flex items-center justify-center mb-4">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl mb-3 text-gray-800">Sustainability</h3>
+                            <p class="text-gray-600">We're committed to protecting our island paradise through eco-friendly practices and marine conservation efforts.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80" alt="Excellence">
+                        <div class="p-8">
+                            <div class="w-14 h-14 bg-gradient-to-br from-ocean to-turquoise rounded-2xl flex items-center justify-center mb-4">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl mb-3 text-gray-800">Excellence</h3>
+                            <p class="text-gray-600">Every detail matters. From our accommodations to our dining, we strive for perfection in every guest experience.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80" alt="Community">
+                        <div class="p-8">
+                            <div class="w-14 h-14 bg-gradient-to-br from-turquoise to-palm rounded-2xl flex items-center justify-center mb-4">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl mb-3 text-gray-800">Community</h3>
+                            <p class="text-gray-600">We support local communities through employment, education, and cultural preservation programs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="section bg-lightGrey">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">OUR TEAM</p>
+                    <h2 class="section-title">Meet Our Leaders</h2>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center fade-in">
+                        <img src="data:image/webp;base64,UklGRvIRAABXRUJQVlA4IOYRAABQRgCdASqVAM0APp1EmkklpCKhLRW7oLATiWUGgN0A/GYf2Yph7IRduducn6xN03hjnE9m3tB/icu8FqySvpGfr/4vDK/Cf8b0Desl3vP3nfY/uv7FX6q//VIlNtFfsr9h5ssmf2PM1r+KX+WVLicAWSC1fDAkYShqy+LCyOQrLLytGocQjJp5eVp3uaBGDc3Dms1yqeFiH49ZbWhghJMBIN68FN4IhtKXw2yOwW0uSZZo4hmQWacExxyNI1m2F6jBUXwgv7S+4biVGGEcUXD9D766/lp8D93qGIFlk45jAMSewfdE7Rtt26+4tdsBR+iZM/UbEsCDtKxk5dWszQJ7gAvA/B52Ki//tuF4VOjDKc/1sEq+hiF09lhCDxrMmECBtLuS5AUnzKNkcVB5ykR1kPIG5dhT9wGn8AeXqGczpuUBn00Xg+2FGZ+EyVDw+HyWtrc/PP0Wvsdx3Wwtx1xACMlMrX1q/CiO+Hk17mQzO3rf3gRtPxhq33YDKOrrggbCMdaNEuuFH3G3kJYo4Y4t/WdeK5th+sc2kXuwPONHYZHT4eVOe1+5eIna+ib+6PoDJ47w2R7hM2Mt478bPzGYD4e2ClAlyOnHdTBxGPKGYtI6a2nPrc4O93FocZBlFJZHO5JqNqN/tz6AeG933kjxsT9j77Z4jxuAvWdZkhzjDEZpMe4MZ82I5zYA1Hgj+FcQvfZqq0rY7b1PaAfycHdIPoG5WI2+Kf74lN5fVOtDGsrGImd+aUuW0PbgAP7zxfteffmneMqDATtZaXWZxoV3CdPvZcKPKXuwAC4E+r4sf2/O4qIeqBMKua2bsig1FO1FWDr94v/Vpqp4vnJa73BEAsHqJJ4zU1NNyhVgU8ZsEMji4SL69Q4netnApUL8/US3I4lBk6wOu5jdodN2hA6W+E/zNDtJ/zym/BuB/BSBt5AqsJRnEiqUhpt+2MZEkjx14oX9qNkN7AHlfWn4J1zCqM3jmrdib+xbN3SzpwWwSzWIVz0hTSndrMn3Qij9xuMxBFtTz8KVW1gpyUg3WgZnCcPu5S5QTrgBsIT/9StoSuaAYtATmK3ZuxSa2Q77J3pkFM7tzzDZCi2pqtHOB0Tl/S5FWkf8vlwWQb8POVaydihULrIY4c2HKd/LSdn/8QRHhaqPT5dO7U86IHAAOw1XSxbhnbZV82I+ImcDpKE2/MPx9y33ukRU0G8U08qObgaK0W2LuzGGX6iMtCHFoSruhiXLnw/lVmwGfUyexcP7Q0gkWZ21U8lXtjRBJWw4Oy21pSTUrQl8NP6lAfgYf0dKIgeX0O91tM7S6PfIUzU4T3IxWRBUg/Ey9bHuf5nNB+daiG/n7VqqvnNv/R2ycOUf0a5UPcXU/+Qg1d3U//GkzM65yOVTnSGVM7zVXKTp+2/CkXvnVojq3HVOxuUoiqmT//LPi5cMtxfiKryxjvWCj2i/c8zqTSOGsUIMn2HEo5KMwxnFxF879YtRrUrBfR6x1veIw+aI81O1LsHFTyJ1z9Qonypf7vpHSk5Xr09KDaum9Dl/1MDzm1sWiyplTIBjlL2q67i5rqKBidVYCj6glaL/5vSkBU2b3Mju5M+vdD/6Mz2hOMxvjdn6y+EszSEy7/MYq88gAKGQIlPw/eAchDJGV+FY942gvhGDFFCcQqELahnk5UzVkGW+M9hdZ591jNhzpSM0KNF3aQfd7kxL6H2IJCDTB6eB4q2vtbrek0Vs4QQEDNsZJbizjDPc/FNqpnuRU4hPBeeicioVAjCw0XKOHnXUocSDDChzZbW0zjPdrRorjDEeowNXDpAebv+n/5zvmtlK62XuJ7HGziQ79l4ya0adXciY9sLQC+pZqQRvC7pmtHSB+ufeKhiua/VZflLrvWlpv/kxI7srn7NcVNF4yFTBpAq3ryRshDBBzXc3vG/xkJbHljzuHuv29K8+45F29NdX7nmODJbSmIiIfewY0VQPYRlzpOhWGQLJb67fjA3yLSonNXzyew0kU2CpsegQhrOecApiwl0Wfpof34FJTzbjXKukArVqRKsVYOOB23UVMpo2BoN30c2Y+V/RQQLLhiY9rkf6qAAqS5Z+nI0um4S4C8LxWqjmTY5nWTQlhA2JuIiOSm8JKMUa4nTQeCTwf1NheEWzRPBDUdgv4AOZQQD8sZtDrLXQySZ3iVVfc6BXAzUIV+7JMssvweZv1fLLjMBiEbSy7PZeQCsd1bTYzK6UeiZ6SgRy3BJR2Jt9znBJ22QQxl+zYHa0mNCbndxHyxXGBCuZXzkgICLBVL068gys9WWKU+Xh6TbVL3iEvCSB8xDzkzA0f5Auizge7Kv9bm2AuP7Rgp1W+/qI8ZxGx4bey3lcsjC7EzS04hGXC/WUsrhEmHPv7O6m/t8OPtkqH94534juot6XIB3zCia8PgPWMJUBGTrlNBfex8Azm6WYdGOd9NgjpeNx1o1bKG5vwzg5CTAsFr7oUS5v07xAAKvhYaiJCXcIlQ76XQQ+oIP/mGeRaSdIK5RzKR0/lEaLrmGqd0T3XpzSeqBqN32rTwp3bn6snZ3v99VWhYsWSO8i6CBxGyPZzJQO3BadvnFP5ydqBTbk+YnsU7o1agnC116GoyK+Clx6dY6mpG+hT82238h537zdr5gsVBB8wsqEJQjSy9w/fdjDdG+ZW6VVI9L/5wdSdz2aKdl/0DAbPKIpOJo53Zqwi6i8eJlvRsc/N6AD5Ny3Qjx+TWf9IbYbNwq9gfrGxesaZNQGhMdUO+ncjAW8fBrLoErPoLXkXDCq7BgURsDTfxXcNhDHty5L7NIduwKDcWEV70wMteMUmwuuOLXZ3sQWdNnI6eQAhAd9SrmTubKY8icm6WSouSCvA75kMXjTkGTflF7Zh6QdpQGUDoUvn0NBXYO2wUwnug7A7rdnLxoH/jLVa4wvumGKX29D4rnBP9byu+6Agd0U9mrnpJX/t54vi8G3ycnbslq6XdSxrimY6HYGImewPdAJQVhTPEMZIjdmBJ6KFXvly58mrmX07vzE5QYWTivOLTicl5KuOLwNNjyunKpBBRCmw1nbLXRPnDBV4PreeQEk9+sWy2yAVPm1atHysUXb7JZN/EP/bWFY6vqfmPSfw9kHCCXAh0OtjPChCGH221yST3SPy08NcLYa3Z/ylQZSj88UvoFoe34isCnI6zPOzMnR37EOLvL2TeM5Rj7VpV7l58VqaiGSnaGY7vwNBplIwiRNjlGkGwT41PhlPHl/mP71BYa9a/yFawpZZFlm/EjMII6dW7i8X3NUGCaDeY1D1Usy5L1Ws8RhJEl2saimk5zHYgnHl0BUkApUMhfjIhNxnEfu3pd3g2lFWt/Etala3GdMi8oH9fQa/UhmoiziU7HEH0C3+U1QKvpeaO4uB0P0MDty65SUrtaUqrj/Y2wkM7CD6MRQJ9EWLv03nksZPD25UxMR5UbrpdSjJZhgr4Q2f7gzOntLSEAC7XHgmbdMmWXKx4qqFgCv2dqCegFT+49YRUEN7LbRF5lLkk1aeqUJ6eOyNv5zT+ersKkmOeZ8IaiI7BpO9SlGRCfzjJoTBZNM1triXMDttNUJh6Z7M1ziOKQFpI9MXMHmZko5OvW19AYKCGnZ80BYNn9SSrr8ZfNb+KXZ7XYJpR0UtEFA8Wq+WMumhHLC6sVRS6/FXJLYjtE6Bjr1WCVIixUY6kOJfxz5YjAOrAdvMKjj4Dr4w19303WVZDg4cfKN8oYWhycF4CkU5w7WGvHLj2457nMHNR199ySQtjvID6bG8HWexj6A8yNLFQZvVT8EY2Npfh1EMC6l1p1EkPjc9riXmnlll1TPQuYKuNJYlZ4m4/rhU4h77nQo7Hc/hIb5e4OvFlOObtUFZAnU+9tbpxKInHrtl5vNO2L4s0vqTuwN91rIRktYnP0af0cuo65d5OHb+p5wOKqhY8Q8VosSf/GgsHQlQxhrLDcE930yU2DRKEKSZGCUWHkRw+TTLObc66/+/Nvt+c8JXgm83pJ8r/pE8fhtLrbQb0mZibSRcbUyt6r4qmi3UOdCZdkppyg70RZ8TS5JrPYSJ+iI8gxPSjJ9jZ2ig6HtZ2Sdl/lyQmvSCncF42SzMflT6s3Qu0Y9mDq8zc9qqChAo9xWBsilsGg5uWaD310yK1r4RmsC/ww+EuZi4P8FkzD8pQ2mDplNr03doGFI7y6xH/+LsP3FOIFTplk5d+5bLLKaieuFaOJxt3TL+L0/joK1QRtyW91q1L0eaX7iDbbp7teKP1xMrttMhxu38AXWRbDAh+Rq5VLkoUIPd7F5KJ/vODsyRj+Z1K8vfOE4lyUxIShODwElmDo+tcENVsWcyPMqUWy5uZMw583YfdafvolMXrAYB6Ob6Z2i8UIWIYfrW/5r61A7zcfmNa21gg+52oEwsBSf2ByB4QkY5lXVLTi41mWMYOqRbn7mCLOegFURPRdf1Z1LIsAdC45QPpqj23u3rkNle6XJamhfJlLjepgfpo4sc6X2kbeqeopRyl46kfABm5Cm3XxdF8dNEv7sNf3ZmHz1l30CAxafpzFcWXjzZhcai4t7Pk3CPXvUKsZnl2x17aQschrwucjcBCna3Mo/jFFk65SqAT2750O3ey2lt3mYQrpTThyXKU9nhLgP4Ot+/ZlS4CVvEHBX5CdDYBe+3ex0OfigTgfvUg+Z2Rpq4ZhXcj2xDFxYTos9KNyJ6cYoWrr4UtU11+2zYWJIlIlU3HQvo4uLr9/ImlCPbWPHgjWI6eqmUA54TOFPAvDVczLo1ffzPdQYvdLKZmjqg4yG1IdsexF7d2rZygnuMDZmmC1OEKNOXbMGNTqaHckJSXndTJ10fJm/GpepUtDNXpFN8XUstN7NxXm8l3/wSbUNacWm1JGA6/rJaOASV1uZAmOt/WMHgH2rEFZEiTz9Y3H2151/SZUW9PdTCZoHi9tJIeUMWM7TTJbzK3ci+j8PBcLbuJnInDG6Yb83EgDM3ABuFlMll53xP377Bz/AEk0lKUGcGQBhrgHaeH1VTWAEorNJCC7aGPLu5vatvGrLggN01TcmQy0mQiGUZc8LnSWeJj6MoSTxf3BF8Ik9J13QRDi+Q2TMz9jUgz7pNt5vnXYFhgQ8e0ieONgjzPldp9PMXhSnObvnb6De4Nfsb0C1qVoyEOiDLsW1ZjPpJthfZHt68alFTyyh32/hsmeY+wb6c7IU3+0lkJCOMB6mO4iCh6xh1Ciq1XysTIqywWwEm16k8rvfNebJoZx+Fnj2Lo/tKPCTcpL5a+9dNdg/SlhNClYs5Z3NGCBcUSp8Ww9gLI++Ls74LLCoD2XHDYNYDyddd6r+dmVGYJTsLuco+iQBhjNcl521yt0jLbJws+xbih/FeKx7uxgviEx7PZhUshfGV9OsC0KU0EYD5ZiV3GujrBCEOREEJb16VSMkYBTRb29oSIyBhr83WJfKE4l8p7ZENYRQw/27XFgmnZ1AL2cHZa1Bh9LrlzvUeOXqGNTNdDCF0axulQ4aD+WIhcBLt00MDBasaDHryb4XiiKLlaSG3QyBsLcADHFg0g2OYYCH13uOfGFqCbugsWcAaBKBK+YQRdODw+QQRZyBOXwegjW1/01Sl+JwJGuU30rCNmWqK8iE3almNllB3WHAWCStK++JPJIUK2HehbD1difgHzr7QAL0TEVq9z52UUaAiHvOWDvB5J8UFeVf2W1HZJSdXNbLP2QNnBBNvMDNRYFY/INq3UU9jbBA3i5xuO4sslkowxQVZF1idZKWQacovVO4XN4pVnlb3RiIFHG2a9qb2gncs5agQdFE4QO3Haoc0QMnfJyRIgxYDSjBa7RYmqzoeS711aVvK5yM61cXVlK2aP/WKr6hbzO9+y/t/v7BgEGnLDpiY/yehMsew/Z1FaWnN0GHlvGYTNCcREdnkOzlyW/+TseHluE/yi/e7Jy/mv9mY5LkHjTLtmv2ENSTrhfj3iNjHpqhlpCFecoopMGe+AvTsJ5eqRWJueOLoAd7q69gjPzrS5s4irbmdzqShUQm+jeAfGj1IZy2X67BFhjhI6CYQUdOxIRWY7vTcR0wfVDNZwt3OCSXcEBTRNnY3XUnATPznOS/vxfiKaIBqIYJFxbrwAAA" alt="CEO" class="w-48 h-48 rounded-full object-cover mx-auto mb-4 shadow-xl">
+                        <h4 class="font-heading font-bold text-lg">Garry snodgrass</h4>
+                        <p class="text-turquoise">General Manager</p>
+                    </div>
+                    <div class="text-center fade-in">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80" alt="Director" class="w-48 h-48 rounded-full object-cover mx-auto mb-4 shadow-xl">
+                        <h4 class="font-heading font-bold text-lg">Maria Sullivan</h4>
+                        <p class="text-turquoise">Guest Relations Director</p>
+                    </div>
+                    <div class="text-center fade-in">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Chef" class="w-48 h-48 rounded-full object-cover mx-auto mb-4 shadow-xl">
+                        <h4 class="font-heading font-bold text-lg">Chef Antonio</h4>
+                        <p class="text-turquoise">Executive Chef</p>
+                    </div>
+                    <div class="text-center fade-in">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Activities" class="w-48 h-48 rounded-full object-cover mx-auto mb-4 shadow-xl">
+                        <h4 class="font-heading font-bold text-lg">Ana Ratuniata</h4>
+                        <p class="text-turquoise">Activities Manager</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- SERVICES PAGE -->
+    <section id="services" class="page-section">
+        <!-- Services Hero -->
+        <div class="relative min-h-[70vh] flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0, 180, 216, 0.5) 0%, rgba(0, 119, 182, 0.4) 100%), url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1920&q=80') center/cover no-repeat;">
+            <div class="text-center text-white px-4">
+                <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">OUR SERVICES</p>
+                <h1 class="font-heading font-bold text-5xl md:text-6xl mb-6">Activities and Amenities</h1>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto">Endless ways to create unforgettable memories</p>
+            </div>
+        </div>
+
+        <!-- Water Activities -->
+        <section class="section bg-services">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">WATER ADVENTURES</p>
+                    <h2 class="section-title">Ocean Activities</h2>
+                    <p class="text-gray-600 mt-8 text-lg max-w-2xl mx-auto">
+                        Dive into crystal-clear waters and explore the vibrant marine life that surrounds our island paradise.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="feature-card fade-in">
+                        <img src="https://plus.unsplash.com/premium_photo-1661265851801-e523847e3932?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c25vcmtlbGluZ3xlbnwwfHwwfHx8MA%3D%3D" alt="Snorkeling">
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl mb-2 text-gray-800">Snorkeling</h3>
+                            <p class="text-gray-600 mb-4">Explore vibrant coral reefs teeming with tropical fish just steps from the beach.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-turquoise font-bold">From $45/person</span>
+                                <button class="text-ocean font-semibold hover:text-turquoise transition-colors">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c2N1YmElMjBkaXZpbmd8ZW58MHx8MHx8fDA%3D" alt="Scuba Diving">
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl mb-2 text-gray-800">Scuba Diving</h3>
+                            <p class="text-gray-600 mb-4">Certified PADI instructors guide you through spectacular underwater landscapes.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-turquoise font-bold">From $120/person</span>
+                                <button class="text-ocean font-semibold hover:text-turquoise transition-colors">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <img src="https://media.istockphoto.com/id/1440612191/photo/aerial-view-of-yellow-kayaks-in-blue-sea-at-sunset-in-summer-people-on-floating-canoes-in.jpg?s=612x612&w=0&k=20&c=6nYCPsvkFjCX0MpEE1TJhMu3nWTsVBx654Wi-wwHyxU=" alt="Kayaking">
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl mb-2 text-gray-800">Kayaking</h3>
+                            <p class="text-gray-600 mb-4">Paddle through calm lagoons and discover hidden coves around the island.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-turquoise font-bold">From $35/person</span>
+                                <button class="text-ocean font-semibold hover:text-turquoise transition-colors">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <img src="https://media.istockphoto.com/id/1169039735/photo/black-marlin-jumps-near-gameboat.jpg?s=612x612&w=0&k=20&c=V71Ttfo4S2VTIi-JnJuu2wZo-XkRH9iL2zhbiahUiGA=" alt="Deep Sea Fishing">
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl mb-2 text-gray-800">Deep Sea Fishing</h3>
+                            <p class="text-gray-600 mb-4">Charter our fully equipped boats for an exciting day of sport fishing.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-turquoise font-bold">From $350/boat</span>
+                                <button class="text-ocean font-semibold hover:text-turquoise transition-colors">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <img src="https://media.istockphoto.com/id/498733319/photo/riding-a-jet-ski.jpg?s=612x612&w=0&k=20&c=cHHoKoyiu3O5SigVCDFa3rJXsD25fw8Enrjzxwu0Cp0=" alt="Jet Ski">
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl mb-2 text-gray-800">Jet Ski Tours</h3>
+                            <p class="text-gray-600 mb-4">Feel the thrill of speeding across turquoise waters on guided tours.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-turquoise font-bold">From $95/person</span>
+                                <button class="text-ocean font-semibold hover:text-turquoise transition-colors">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in">
+                        <img src="https://th.bing.com/th/id/R.b6a02143a6fe3d21e183c9c95782d69a?rik=dIJjTMS6jJh5hQ&pid=ImgRaw&r=0" alt="Sunset Cruise">
+                        <div class="p-6">
+                            <h3 class="font-heading font-bold text-xl mb-2 text-gray-800">Sunset Cruise</h3>
+                            <p class="text-gray-600 mb-4">Romantic catamaran cruises with champagne as the sun sets over the ocean.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-turquoise font-bold">From $85/person</span>
+                                <button class="text-ocean font-semibold hover:text-turquoise transition-colors">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Land Activities -->
+        <section class="section bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">LAND EXPERIENCES</p>
+                    <h2 class="section-title">Island Activities</h2>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&q=80" alt="Spa">
+                        <div class="activity-overlay">
+                            <h4 class="font-heading font-bold text-lg">Spa & Wellness</h4>
+                            <p class="text-white/80 text-sm">Traditional Fijian treatments</p>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Island Tours">
+                        <div class="activity-overlay">
+                            <h4 class="font-heading font-bold text-lg">Island Tours</h4>
+                            <p class="text-white/80 text-sm">Explore nearby islands</p>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=80" alt="Beach Volleyball">
+                        <div class="activity-overlay">
+                            <h4 class="font-heading font-bold text-lg">Beach Sports</h4>
+                            <p class="text-white/80 text-sm">Volleyball, tennis & more</p>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Hiking">
+                        <div class="activity-overlay">
+                            <h4 class="font-heading font-bold text-lg">Nature Trails</h4>
+                            <p class="text-white/80 text-sm">Scenic hiking paths</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marina Services -->
+        <section class="section bg-lightGrey">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="fade-in">
+                        <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">MARINA FACILITIES</p>
+                        <h2 class="section-title text-left">World-Class Marina</h2>
+                        <p class="text-gray-600 mt-8 text-lg leading-relaxed mb-6">
+                            Our full-service marina accommodates vessels up to 60 meters, offering everything sailors need for a comfortable stay.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-palm/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-palm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="text-gray-700">30 fully serviced berths with power and water</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-palm/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-palm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="text-gray-700">Fuel dock with diesel and gasoline</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-palm/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-palm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="text-gray-700">On-site boat repair and maintenance</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-palm/20 rounded-full flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-palm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <span class="text-gray-700">Yacht club with exclusive member benefits</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fade-in">
+                        <img src="https://images.unsplash.com/photo-1608393570755-cb5c47684686?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWFyaW5hfGVufDB8fDB8fHww" alt="Marina" class="rounded-3xl shadow-2xl w-full h-[500px] object-cover">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dining -->
+        <section class="section bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">CULINARY</p>
+                    <h2 class="section-title">Dining Experiences</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="room-card fade-in h-[400px]">
+                        <img src="https://media-cdn.tripadvisor.com/media/photo-s/14/dc/3b/91/dicks-place-bar-bistro.jpg" alt="Main Restaurant">
+                        <div class="room-overlay">
+                            <h3 class="font-heading font-bold text-2xl mb-2">The Cove Restaurant</h3>
+                            <p class="text-white/80 mb-2">International cuisine with local flavors</p>
+                            <p class="text-turquoise">Open daily 7am - 10pm</p>
+                        </div>
+                    </div>
+                    <div class="room-card fade-in h-[400px]">
+                        <img src="https://image-tc.galaxy.tf/wijpeg-5t7grlqgdcw7967d36daifp5p/img-9791_standard.jpg?crop=286%2C0%2C1424%2C1068" alt="Beach Bar">
+                        <div class="room-overlay">
+                            <h3 class="font-heading font-bold text-2xl mb-2">Sunset Beach Bar</h3>
+                            <p class="text-white/80 mb-2">Cocktails and light bites by the ocean</p>
+                            <p class="text-turquoise">Open daily 11am - 11pm</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- LOCATION PAGE -->
+    <section id="location" class="page-section">
+        <!-- Location Hero -->
+        <div class="relative min-h-[70vh] flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0, 119, 182, 0.6) 0%, rgba(42, 157, 143, 0.5) 100%), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80') center/cover no-repeat;">
+            <div class="text-center text-white px-4">
+                <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">FIND US</p>
+                <h1 class="font-heading font-bold text-5xl md:text-6xl mb-6">Our Location</h1>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto">In the heart of Fiji's Mamanuca Islands</p>
+            </div>
+        </div>
+
+        <!-- Getting Here -->
+        <section class="section bg-location">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">HOW TO REACH US</p>
+                    <h2 class="section-title">Getting Here</h2>
+                    <p class="text-gray-600 mt-8 text-lg max-w-3xl mx-auto">
+                        Musket Cove is located on Malolo Lailai Island in the Mamanuca archipelago, approximately 25 kilometers west of Nadi.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="feature-card fade-in text-center">
+                        <img src="https://media.istockphoto.com/id/1323901806/photo/catamaran-motor-yacht-on-the-ocean.jpg?s=612x612&w=0&k=20&c=FdGsnKu7rxr1Df8F7UFO04pmneb3GGYaGXMTDqIY-1w=" alt="By Boat" class="h-48 w-full object-cover">
+                        <div class="p-6">
+                            <div class="w-14 h-14 bg-ocean rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl mb-3">By Boat</h3>
+                            <p class="text-gray-600 mb-2">Regular ferry services from Port Denarau</p>
+                            <p class="text-ocean font-semibold">45-60 minutes</p>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in text-center">
+                        <img src="https://image-tc.galaxy.tf/wipng-3qgyxtxzy4cr3zuhwoeu33594/helicopter-musket-cove-fiji.png?width=1920" alt="By Helicopter" class="h-48 w-full object-cover">
+                        <div class="p-6">
+                            <div class="w-14 h-14 bg-turquoise rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl mb-3">By Helicopter</h3>
+                            <p class="text-gray-600 mb-2">Scenic transfers from Nadi Airport</p>
+                            <p class="text-ocean font-semibold">15 minutes</p>
+                        </div>
+                    </div>
+                    <div class="feature-card fade-in text-center">
+                        <img src="https://th.bing.com/th/id/R.4c71f487188656f356d78cbda8dba4c7?rik=BwsLrvDIFSPelw&riu=http%3a%2f%2fwww.katiekat.net%2fCruise%2fCruise2003LPhotos%2fMusketCoveSeaplane3.jpg&ehk=H2Juz0imPRGyuFVcsqlQ47EeFmAPWfvwqEmwWP1eZrU%3d&risl=&pid=ImgRaw&r=0" alt="By Seaplane" class="h-48 w-full object-cover">
+                        <div class="p-6">
+                            <div class="w-14 h-14 bg-palm rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-xl mb-3">By Seaplane</h3>
+                            <p class="text-gray-600 mb-2">Direct arrival to our lagoon</p>
+                            <p class="text-ocean font-semibold">20 minutes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="fade-in bg-white rounded-3xl overflow-hidden shadow-2xl">
+                    <div class="h-[400px] bg-gradient-to-br from-ocean/10 to-turquoise/10 flex items-center justify-center">
+                        <div class="text-center p-8">
+                            <svg class="w-16 h-16 text-ocean mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            <h3 class="font-heading font-bold text-2xl mb-2 text-gray-800">Malolo Lailai Island</h3>
+                            <p class="text-gray-600">Mamanuca Islands, Fiji</p>
+                            <p class="text-ocean mt-2">GPS: 17°47' S, 177°08' E</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nearby Attractions -->
+        <section class="section bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 fade-in">
+                    <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">EXPLORE</p>
+                    <h2 class="section-title">Nearby Attractions</h2>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=80" alt="Coral Reefs">
+                        <div class="activity-overlay">
+                            <h4 class="font-heading font-bold text-lg">Coral Gardens</h4>
+                            <p class="text-white/80 text-sm">Pristine snorkeling</p>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1559291001-693fb9166cba?w=600&q=80" alt="Sandbar">
+                        <div class="activity-overlay">
+                            <h4 class="font-heading font-bold text-lg">Sandbar</h4>
+                            <p class="text-white/80 text-sm">Natural wonder</p>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Fiji Islands">
+                        <div class="activity-overlay">
+                            <h4 class="font-heading font-bold text-lg">Nearby Islands</h4>
+                            <p class="text-white/80 text-sm">Island hopping</p>
+                        </div>
+                    </div>
+                    <div class="activity-card fade-in">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Beaches">
+                        <div class="activity-overlay">
+                            <h4 class="font-heading font-bold text-lg">Hidden Beaches</h4>
+                            <p class="text-white/80 text-sm">Secluded paradise</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- GALLERY PAGE -->
+    <section id="gallery" class="page-section">
+        <!-- Gallery Hero -->
+        <div class="relative min-h-[60vh] flex items-center justify-center" style="background: linear-gradient(135deg, rgba(0, 119, 182, 0.5) 0%, rgba(0, 180, 216, 0.4) 100%), url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1920&q=80') center/cover no-repeat;">
+            <div class="text-center text-white px-4">
+                <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">PHOTO GALLERY</p>
+                <h1 class="font-heading font-bold text-5xl md:text-6xl mb-6">Our Paradise</h1>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto">Explore the beauty of Musket Cove through our lens</p>
+            </div>
+        </div>
+
+        <!-- Gallery Filter -->
+        <section class="section bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-wrap justify-center gap-4 mb-12 fade-in">
+                    <button class="gallery-filter active px-6 py-2 rounded-full font-heading font-semibold transition-all bg-ocean text-white" data-filter="all">All</button>
+                    <button class="gallery-filter px-6 py-2 rounded-full font-heading font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-ocean hover:text-white" data-filter="resort">Resort</button>
+                    <button class="gallery-filter px-6 py-2 rounded-full font-heading font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-ocean hover:text-white" data-filter="rooms">Rooms</button>
+                    <button class="gallery-filter px-6 py-2 rounded-full font-heading font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-ocean hover:text-white" data-filter="activities">Activities</button>
+                    <button class="gallery-filter px-6 py-2 rounded-full font-heading font-semibold transition-all bg-gray-100 text-gray-600 hover:bg-ocean hover:text-white" data-filter="dining">Dining</button>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Resort Images -->
+                    <div class="gallery-item fade-in" data-category="resort" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80" alt="Resort Overview">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="resort" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80" alt="Aerial View">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="resort" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&q=80" alt="Pool Area">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="resort" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1559628376-f3fe5f782a2e?w=800&q=80" alt="Beach">
+                    </div>
+
+                    <!-- Room Images -->
+                    <div class="gallery-item fade-in" data-category="rooms" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80" alt="Garden View Room">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="rooms" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=80" alt="Ocean Front Villa">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="rooms" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&q=80" alt="Premium Suite">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="rooms" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80" alt="Bathroom">
+                    </div>
+
+                    <!-- Activities Images -->
+                    <div class="gallery-item fade-in" data-category="activities" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Snorkeling">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="activities" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=800&q=80" alt="Diving">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="activities" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1559291001-693fb9166cba?w=800&q=80" alt="Kayaking">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="activities" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Island Tour">
+                    </div>
+
+                    <!-- Dining Images -->
+                    <div class="gallery-item fade-in" data-category="dining" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Restaurant">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="dining" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Bar">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="dining" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=800&q=80" alt="Dinner">
+                    </div>
+                    <div class="gallery-item fade-in" data-category="dining" onclick="openLightbox(this)">
+                        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80" alt="Cuisine">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="contact" class="page-section">
+        <!-- Contact Hero -->
+        <div class="relative min-h-[60vh] flex items-center justify-center" style="background: linear-gradient(135deg, rgba(42, 157, 143, 0.6) 0%, rgba(0, 119, 182, 0.5) 100%), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1920&q=80') center/cover no-repeat;">
+            <div class="text-center text-white px-4">
+                <p class="text-turquoise font-heading font-semibold tracking-widest mb-4">GET IN TOUCH</p>
+                <h1 class="font-heading font-bold text-5xl md:text-6xl mb-6">Contact Us</h1>
+                <p class="text-xl text-white/90 max-w-2xl mx-auto">We're here to help you plan your perfect getaway</p>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <section class="section bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16">
+                    <!-- Form -->
+                    <div class="fade-in">
+                        <h2 class="section-title text-left mb-8">Send Us a Message</h2>
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">First Name</label>
+                                    <input type="text" class="form-input" placeholder="John" required>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Last Name</label>
+                                    <input type="text" class="form-input" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Email Address</label>
+                                <input type="email" class="form-input" placeholder="john@example.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
+                                <input type="tel" class="form-input" placeholder="+1 234 567 8900">
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Check In Date</label>
+                                    <input type="date" class="form-input">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-2">Check Out Date</label>
+                                    <input type="date" class="form-input">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Number of Guests</label>
+                                <select class="form-input">
+                                    <option>1 Guest</option>
+                                    <option>2 Guests</option>
+                                    <option>3 Guests</option>
+                                    <option>4 Guests</option>
+                                    <option>5+ Guests</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Room Preference</label>
+                                <select class="form-input">
+                                    <option>Garden View Room</option>
+                                    <option>Ocean Front Villa</option>
+                                    <option>Premium Suite</option>
+                                    <option>Not Sure Yet</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-2">Special Requests</label>
+                                <textarea class="form-input h-32 resize-none" placeholder="Tell us about any special requirements or requests..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full">
+                                Send Inquiry
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="fade-in">
+                        <h2 class="section-title text-left mb-8">Contact Information</h2>
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-ocean to-turquoise rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-lg text-gray-800">Address</h4>
+                                    <p class="text-gray-600">Musket Cove Island Resort and Marina<br>Malolo Lailai Island<br>Mamanuca Islands, Fiji</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-turquoise to-palm rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-lg text-gray-800">Phone</h4>
+                                    <p class="text-gray-600">Reservations: +679 666 2222</p>
+                                    <p class="text-gray-600">Marina: +679 666 2233</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-palm to-ocean rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-lg text-gray-800">Email</h4>
+                                    <p class="text-gray-600">reservations@musktcove.com.fj</p>
+                                    <p class="text-gray-600">info@musktcove.com.fj</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-ocean to-palm rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-bold text-lg text-gray-800">Office Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 8am - 6pm (FJT)</p>
+                                    <p class="text-gray-600">Saturday - Sunday: 9am - 5pm (FJT)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div class="mt-12">
+                            <h4 class="font-heading font-bold text-lg text-gray-800 mb-4">Follow Us</h4>
+                            <div class="flex gap-4">
+                                <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-ocean hover:text-white transition-all group">
+                                    <svg class="w-5 h-5 text-gray-600 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-ocean hover:text-white transition-all group">
+                                    <svg class="w-5 h-5 text-gray-600 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-ocean hover:text-white transition-all group">
+                                    <svg class="w-5 h-5 text-gray-600 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center hover:bg-ocean hover:text-white transition-all group">
+                                    <svg class="w-5 h-5 text-gray-600 group-hover:text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2" class="text-turquoise"/>
+                            <path d="M12 25 L20 12 L28 25 Z" fill="#00B4D8"/>
+                            <path d="M15 22 Q20 18 25 22" stroke="#0077B6" stroke-width="2" fill="none"/>
+                        </svg>
+                        <span class="font-heading font-bold text-xl">Musket Cove</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Your gateway to paradise in the heart of Fiji's Mamanuca Islands.</p>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('home')" class="text-gray-400 hover:text-turquoise transition-colors">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')" class="text-gray-400 hover:text-turquoise transition-colors">About Us</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="text-gray-400 hover:text-turquoise transition-colors">Services</a></li>
+                        <li><a href="#" onclick="showPage('gallery')" class="text-gray-400 hover:text-turquoise transition-colors">Gallery</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="text-gray-400 hover:text-turquoise transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-6">Activities</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" onclick="showPage('services')" class="text-gray-400 hover:text-turquoise transition-colors">Snorkeling</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="text-gray-400 hover:text-turquoise transition-colors">Scuba Diving</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="text-gray-400 hover:text-turquoise transition-colors">Spa & Wellness</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="text-gray-400 hover:text-turquoise transition-colors">Island Tours</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="text-gray-400 hover:text-turquoise transition-colors">Marina Services</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-6">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for exclusive offers and updates.</p>
+                    <form class="flex gap-2">
+                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 rounded-full bg-gray-700 border border-gray-600 focus:border-turquoise focus:outline-none text-white">
+                        <button type="submit" class="w-10 h-10 bg-turquoise rounded-full flex items-center justify-center hover:bg-ocean transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-wrap justify-between items-center gap-4">
+                <p class="text-gray-400 text-sm">2024 Musket Cove Island Resort and Marina. All rights reserved.</p>
+                <div class="flex gap-6 text-sm">
+                    <a href="#" class="text-gray-400 hover:text-turquoise transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-turquoise transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img src="" alt="Gallery Image" id="lightboxImg">
+    </div>
+
+    <script>
+        // Initialize variables first
+        let currentPage = 'home';
+        const navbar = document.getElementById('navbar');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const particles = document.getElementById('particles');
+
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                setTimeout(() => {
+                    targetPage.classList.add('active');
+                }, 50);
+            }
+            
+            // Update current page
+            currentPage = pageId;
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Reset navbar
+            if (pageId === 'home') {
+                navbar.classList.remove('nav-scrolled');
+            } else {
+                navbar.classList.add('nav-scrolled');
+            }
+            
+            // Re-initialize animations
+            setTimeout(initScrollAnimations, 100);
+            
+            return false;
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('open');
+        }
+
+        // Lightbox Functions
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            if (img) {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // Close lightbox on background click
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100 || currentPage !== 'home') {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(el => {
+                el.classList.remove('visible');
+                observer.observe(el);
+            });
+        }
+
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Create Particles
+        function createParticles() {
+            if (!particles) return;
+            
+            particles.innerHTML = '';
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.max(5, Math.random() * 15) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        // Gallery Filter
+        const filterButtons = document.querySelectorAll('.gallery-filter');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Update active button
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-ocean', 'text-white');
+                    btn.classList.add('bg-gray-100', 'text-gray-600');
+                });
+                this.classList.remove('bg-gray-100', 'text-gray-600');
+                this.classList.add('bg-ocean', 'text-white');
+                
+                // Filter items
+                const filter = this.getAttribute('data-filter');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'scale(0.8)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show success message
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.innerHTML;
+                button.innerHTML = 'Message Sent! <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+                button.classList.add('bg-palm');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.classList.remove('bg-palm');
+                    contactForm.reset();
+                }, 3000);
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            initScrollAnimations();
+            createParticles();
+            
+            // Animate counters when visible
+            const statsSection = document.querySelector('.stat-item');
+            if (statsSection) {
+                const statsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            statsObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                statsObserver.observe(statsSection);
+            }
+        });
+
+        // Reduced motion support
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('.particle').forEach(p => p.remove());
+        }
+    </script>
+</body>
+</html>
